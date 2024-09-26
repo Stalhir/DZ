@@ -1,0 +1,19 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+
+	int cinNumber = { 0 };
+	int number = { 0 };
+
+	do
+	{
+		cout << "Введите целое число или число '0', чтобы закончить: " << endl;
+		cin >> cinNumber;
+		number = number + cinNumber;
+	} while (cinNumber != 0);
+	cout << "Cумма: " << number << endl;
+}
