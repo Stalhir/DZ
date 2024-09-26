@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int number = {0};
+    cout << "Введите целое число:" << endl;
+    cin >> number;
+
+    for (int multiplier = 1; multiplier <= 10; ++multiplier)
+    {
+        cout << number << " " << "x" << " " << multiplier << " " << "=" << " " << number * multiplier << endl;
+    }
+
+}
