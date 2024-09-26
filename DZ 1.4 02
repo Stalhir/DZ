@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int number = { 0 };
+    int amountNumber = { 0 };
+    cout << "Введите целое число: " << endl;
+    cin >> number;
+    int tempNumber = { 0 };
+    while(number > 0)
+    {
+        amountNumber = amountNumber + (number % 10);
+        number = number / 10;
+    }
+    cout << "Сумма цифр: " << amountNumber << endl;
+}
+
