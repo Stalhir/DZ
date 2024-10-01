@@ -1,0 +1,77 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    const int SIZE = 3, SIZETWO = 6;
+    int arr[SIZE][SIZETWO] =
+    {
+        {25,55,27,86,97,54},
+        {64,32,75,88,91,23},
+        {33,72,35,44,33,48}
+    };
+		
+    int min = 0;
+    int max = 0;
+    int indexmin[1][2] = { 0,0 };
+    int indexmax[1][2] = { 0,0 };
+    int temp = 0;
+    
+    cout << "Массив: " << endl;
+    for (int elements = 0; elements < SIZE; elements++)
+    {
+        for (int elementsTwo = 0; elementsTwo < SIZETWO; elementsTwo++)
+        {
+            cout << arr[elements][elementsTwo] << "\t";
+        }
+        cout << endl;
+    }
+
+    for (int elements = 0; elements < SIZE; elements++)
+    {
+        for (int elementsTwo = 0; elementsTwo < SIZETWO; elementsTwo++)
+        {
+            if (elements == 0 && elementsTwo == 0) { temp = arr[elements][elementsTwo]; }
+            temp = arr[elements][elementsTwo] < temp ? arr[elements][elementsTwo] : temp;
+            min = temp;
+        }
+        
+    }
+    for (int elements = 0; elements < SIZE; elements++)
+    {
+        for (int elementsTwo = 0; elementsTwo < SIZETWO; elementsTwo++)
+        {
+            if (elements == 0 && elementsTwo == 0) { temp = arr[elements][elementsTwo]; }
+            temp = arr[elements][elementsTwo] > temp ? arr[elements][elementsTwo] : temp;
+            max = temp;
+        }
+
+    }
+
+    for (int elements = 0; elements < SIZE; elements++)
+    {
+        for (int elementsTwo = 0; elementsTwo < SIZETWO; elementsTwo++)
+        {
+            bool stopFlagMin = 0, stopFlagMax = 0;
+            if (stopFlagMin == false && arr[elements][elementsTwo] == min)
+            { 
+                indexmin[0][0] = elements; indexmin[0][1] = elementsTwo; 
+            };
+
+            if (stopFlagMax == false && arr[elements][elementsTwo] == max )
+            { 
+                indexmax[0][0] = elements; indexmax[0][1] = elementsTwo; 
+            };
+
+            if (stopFlagMin == true && stopFlagMax == true) 
+            { 
+                break;
+            }
+        }
+    }
+    cout << "Индекс минимального элемента: " << indexmin[0][0] << " " << indexmin[0][1] << endl;
+    cout << "Индекс максимального элемента: " << indexmax[0][0] << " " << indexmax[0][1] << endl;
+    
+}
