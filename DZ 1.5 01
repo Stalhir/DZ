@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	const int SIZE = 10;
+	int arr[SIZE] = { 12,23,34,21,46,89,87,44,94,55 };
+	
+	
+
+	for(int elements = 0; elements < SIZE; elements++ )
+	{
+		
+		if (elements + 1 == SIZE) { cout << arr[elements]; break; }
+		cout   << arr[elements] << ", ";
+		
+	}
+
+}
