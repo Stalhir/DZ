@@ -1,0 +1,38 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	const int SIZE = 10;
+	int arr[SIZE] = { 12,23,34,232,46,89,87,44,94,55 };
+	int min = 0;
+	int max = 0;
+	int temp = 0;
+
+	cout << "Массив: " << endl;
+	for (int elements = 0; elements < SIZE; elements++)
+	{
+		cout << arr[elements] << "  ";
+	}
+
+	for (int elements = 0; elements < SIZE; elements++)
+	{
+		if (elements == 0) { temp = arr[elements]; }
+		temp = arr[elements] > temp ? arr[elements] : temp;
+		max = temp;
+	}
+	
+	for (int elements = 0; elements < SIZE; elements++)
+	{
+		if (elements == 0) { temp = arr[elements]; }
+		temp = arr[elements] < temp ? arr[elements] : temp;
+		min = temp;
+	}
+	
+	cout << endl;
+
+	cout << "Максимальный элемент: " << max << endl;
+	cout << "Минимальный элемент: " << min << endl;
+}
