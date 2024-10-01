@@ -1,0 +1,45 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+
+	const int SIZE = 10;
+	int arr[SIZE] = { 23,9,34,17,-3, 58,13,96,32,45 };
+	bool swapped = false;
+
+	cout << "До сортировки:";
+
+	for (int element = 0; element < SIZE; element++)
+	{
+		cout << arr[element] << " ";
+	}
+
+	cout << endl;
+
+	do
+	{
+		swapped = false;
+		for (int element = 1; element < SIZE; element++)
+		{
+			if (arr[element - 1] < arr[element])
+			{
+				int temp = arr[element - 1];
+				arr[element - 1] = arr[element];
+				arr[element] = temp;
+				swapped = true;
+			}
+		}
+	} while (swapped);
+
+	cout << "После сортировки:";
+
+	for (int element = 0; element < SIZE; element++)
+	{
+		cout << arr[element] << " ";
+	}
+
+
+}
