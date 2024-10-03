@@ -1,0 +1,49 @@
+#include <iostream>
+
+using namespace std;
+
+void fibonachi( int quantity, int cycle = 0, unsigned long  long a = 0, unsigned long long b = 0)
+{
+	if(quantity < 0)
+	{
+		cout << "Нельзя такое число";
+		return;
+	}
+	if(cycle <= quantity)
+	{
+		unsigned long long  nubmerA = a, nubmerB = b, sum = 0;
+		int quantityF = quantity;
+		if(cycle <= 1)
+		{
+			
+			nubmerB++;
+			cout << nubmerA << " ";
+			cout << nubmerB << " ";
+			cycle = 1;
+		}
+		
+			sum = nubmerA + nubmerB;
+			nubmerA = nubmerB;
+			nubmerB = sum;
+
+			cout << sum << " ";
+
+			fibonachi(quantityF, ++cycle, nubmerA, nubmerB);
+			
+		
+	}
+	else
+	{
+		return;
+	}
+}
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	int quantityCycle = 0;
+	cout << "Введите число: ";
+	cin >> quantityCycle;
+	cout << "Числа Фибоначчи: ";
+	fibonachi(quantityCycle-2);
+}
