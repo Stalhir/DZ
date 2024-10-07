@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+
+
+int main()
+{
+	int number = 0;
+	short number1 = 0;
+	long number2 = 0;
+	long long number3 = 0;
+	float number4 = 0;
+	double number5 = 0;
+	long double number6 = 0;
+	bool number7 = 0;
+	cout << "int: " << &number << " " << sizeof(number) << endl;
+	cout << "short: " << &number1 << " " << sizeof(number1) << endl;
+	cout << "long: " << &number2 << " " << sizeof(number2) << endl;
+	cout << "long long: " << &number3 << " " << sizeof(number3) << endl;
+	cout << "float: " << &number4 << " " << sizeof(number4) << endl;
+	cout << "double: " << &number5 << " " << sizeof(number5) << endl;
+	cout << "long double: " << &number6 << " " << sizeof(number6) << endl;
+	cout << "bool: " << &number7 << " " << sizeof(number7) << endl;
+}
+
