@@ -1,0 +1,45 @@
+#include <iostream>
+
+using namespace std;
+
+namespace sum 
+{
+	int calc(int x, int y)
+	{
+		return x + y;
+	}
+};
+namespace sub
+{
+	int calc(int x, int y)
+	{
+		return x - y;
+	}
+};
+namespace divv
+{
+	int calc(int x, int y)
+	{
+		return x / y;
+	}
+};
+namespace mul 
+{
+	int calc(int x, int y)
+	{
+		return x * y;
+	}
+};
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	int x = 0, y = 0;
+	cout << "Введите числа: " << endl;
+	cin >> x;
+	cin >> y;
+	cout << "Сложение: " << sum::calc(x, y) << endl;
+	cout << "Вычитание: " << sub::calc(x, y) << endl;
+	cout << "Деление: " << divv::calc(x, y) << endl;
+	cout << "Умножение: " << mul::calc(x, y) << endl;
+}
