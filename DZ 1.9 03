@@ -1,0 +1,38 @@
+#include <iostream>
+
+void reverse(int* arr, int SIZE);
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	const int SIZE = 5;
+	int arr[SIZE]{ 1,2,3,4,5 };
+	std::cout <<"До функции reverse: " ;
+	for (int i = 0; i < SIZE; i++) 
+	{ 
+		std::cout << arr[i]<<" "; 
+	}
+	std::cout << std::endl;
+	std::cout << "После функции reverse: ";
+	reverse(arr, SIZE);
+	
+}
+
+void reverse(int* arr,int SIZE)
+{
+	int temp{};
+
+	for (int i = 0; i < SIZE/2; i++)
+	{
+
+		temp = arr[i];
+		arr[i] = arr[SIZE - i - 1];
+		arr[SIZE - i - 1] = temp;
+		
+		
+	}
+	for (int i = 0; i < SIZE; i++)
+	{
+		std::cout << arr[i] << " ";
+	}
+}
