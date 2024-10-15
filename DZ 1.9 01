@@ -1,0 +1,25 @@
+#include <iostream>
+
+void print(int arr[],int SIZE)
+{
+	for(int i = 0; i < SIZE;i++)
+	{
+		std::cout << arr[i] << " ";
+	}
+}
+
+int main()
+{
+	const int SIZEA = 7, SIZEB = 9, SIZEC = 5;
+	int a[SIZEA] = {3,2,6,78,4,1,8};
+	int b[SIZEB] = {9,5,90,43,22,3,4,87,2};
+	int c[SIZEC] = { 5,2,3,5,9 };
+
+
+	print(a,SIZEA);
+	std::cout << "\n";
+	print(b, SIZEB);
+	std::cout << "\n";
+	print(c, SIZEC);
+	
+}
