@@ -1,0 +1,24 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+	ifstream fin ("in.txt");
+	if (fin.is_open())
+	{
+		int ARRSIZE = 0;
+		fin >> ARRSIZE;
+		int* arr = new int[ARRSIZE];
+		for (int i = 0; i < ARRSIZE; i++)
+		{
+			fin >> arr[i];
+		}
+		for (int i = 0; i < ARRSIZE; i++)
+		{
+			cout << arr[ARRSIZE - 1 - i] << " ";
+		}
+	}
+	fin.close();
+}
