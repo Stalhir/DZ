@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	std::ofstream fout("out.txt");
+
+	if(fout.is_open())
+	{
+		int SIZE{};
+		cout << "Введите размер массива: ";
+		cin >> SIZE;
+		fout << SIZE << "\n";
+		int* arr = new int[SIZE];
+		for (int i = 0; i < SIZE; i++)
+		{
+			cout << "[" << i << "] " << "= " << i + 1 << endl;
+			arr[SIZE - i - 1] = i + 1;
+		}
+		for (int i = 0; i < SIZE; i++)
+		{
+			fout << arr[i]<<" ";
+		}
+	}
+	
+	fout.close();
+
+}
