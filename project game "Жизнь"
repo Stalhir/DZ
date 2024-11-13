@@ -1,0 +1,261 @@
+#include <iostream>
+#include <fstream>
+#include <windows.h>
+#include <cstdlib>
+
+
+using namespace std;
+using std::cin;
+
+int main()
+{
+    ifstream fin("C:\\in.txt");
+
+    
+
+    int gameGeneretion{};
+    bool gameStop = true;
+    int qLive{};
+    int qСhanges{};
+    int aliveCells{};
+    bool gameStability = false;
+    int stabilityQ{};
+    int gameStabilityQ{};
+
+    int row{}, col{};
+    fin >> row;
+    fin >> col;
+    int spawnLiveObjectRow{};
+    int spawnLiveObjectCol{};
+
+    bool** arr = new bool*[row];
+    for (int i = 0; i < row; i++)
+    {
+        arr[i] = new bool[col] {};
+    }
+    bool** arrCopy = new bool*[row];
+    for (int i = 0; i < row; i++)
+    {
+        arrCopy[i] = new bool[col] {};
+    }
+
+
+
+    while(fin>>spawnLiveObjectRow >> spawnLiveObjectCol) 
+    {
+        arr[spawnLiveObjectRow][spawnLiveObjectCol] = true; 
+        aliveCells++;
+    }
+ 
+    for(int i =0;i<row;i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            
+            arrCopy[i][j] = arr[i][j];
+        }
+    }
+
+    int tempChanges{5000};
+   
+    int generation{ 1 };
+
+  
+    while (gameStop)
+    {
+
+        cin.get();
+        system("clr");
+        aliveCells = 0;
+
+
+
+
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                bool flag{};
+                int aliveQ{};
+                //проверка углов внизу
+                if (i == 0 && j == 0 && flag == false)
+                {
+                    if (arr[i + 1][j] == true) { aliveQ++; }
+                    if (arr[i + 1][j + 1] == true) { aliveQ++; }
+                    if (arr[i][j + 1] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true; qСhanges++;  }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++; }
+                    flag = true;
+                }
+                else if (i == row - 1 && j == col - 1 && flag == false)
+                {
+                    if (arr[i - 1][j - 1] == true) { aliveQ++; }
+                    if (arr[i - 1][j] == true) { aliveQ++; }
+                    if (arr[i][j - 1] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true;  }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++;  }
+                    flag = true;
+                }
+                else if (i == row - 1 && j == 0 && flag == false)
+                {
+                    if (arr[i - 1][j] == true) { aliveQ++; }
+                    if (arr[i - 1][j + 1] == true) { aliveQ++; }
+                    if (arr[i][j + 1] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true;  }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++; }
+                    flag = true;
+                }
+                else if (i == 0 && j == col - 1 && flag == false)
+                {
+                    if (arr[i][j - 1] == true) { aliveQ++; }
+                    if (arr[i + 1][j - 1] == true) { aliveQ++; }
+                    if (arr[i + 1][j] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true; }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++;  }
+                    flag = true;
+                }
+                // проверка стен внизу
+                if (i == row - 1 && flag == false)
+                {
+                    if (arr[i - 1][j] == true) { aliveQ++; }
+                    if (arr[i - 1][j - 1] == true) { aliveQ++; }
+                    if (arr[i - 1][j + 1] == true) { aliveQ++; }
+                    if (arr[i][j + 1] == true) { aliveQ++; }
+                    if (arr[i][j - 1] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true;  }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++; }
+                    flag = true;
+                }
+                else if (i == 0 && flag == false)
+                {
+                    if (arr[i + 1][j] == true) { aliveQ++; }
+                    if (arr[i + 1][j - 1] == true) { aliveQ++; }
+                    if (arr[i + 1][j + 1] == true) { aliveQ++; }
+                    if (arr[i][j + 1] == true) { aliveQ++; }
+                    if (arr[i][j - 1] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true; }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++;  }
+                    flag = true;
+
+                }
+                else if (j == col - 1 && flag == false)
+                {
+                    if (arr[i][j - 1] == true) { aliveQ++; }
+                    if (arr[i + 1][j - 1] == true) { aliveQ++; }
+                    if (arr[i - 1][j - 1] == true) { aliveQ++; }
+                    if (arr[i + 1][j] == true) { aliveQ++; }
+                    if (arr[i - 1][j] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true; }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++; }
+                    flag = true;
+                }
+                else if (j == 0 && flag == false)
+                {
+                    if (arr[i][j + 1] == true) { aliveQ++; }
+                    if (arr[i + 1][j + 1] == true) { aliveQ++; }
+                    if (arr[i - 1][j + 1] == true) { aliveQ++; }
+                    if (arr[i - 1][j] == true) { aliveQ++; }
+                    if (arr[i + 1][j] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true;  }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++;  }
+                    flag = true;
+                }
+
+                if (flag == false)
+                {
+                    if (arr[i - 1][j] == true) { aliveQ++; }
+                    if (arr[i + 1][j] == true) { aliveQ++; }
+                    if (arr[i][j - 1] == true) { aliveQ++; }
+                    if (arr[i][j + 1] == true) { aliveQ++; }
+                    if (arr[i - 1][j - 1] == true) { aliveQ++; }
+                    if (arr[i + 1][j + 1] == true) { aliveQ++; }
+                    if (arr[i - 1][j + 1] == true) { aliveQ++; }
+                    if (arr[i + 1][j - 1] == true) { aliveQ++; }
+                    if (aliveQ == 3) { arrCopy[i][j] = true; }
+                    if (aliveQ < 2 || aliveQ > 3 && arr[i][j] == true) { arrCopy[i][j] = false; qСhanges++;  }
+                    flag = true;
+                }
+
+
+
+
+
+
+
+
+                aliveQ = 0;
+                flag = false;
+            }
+        }
+
+
+
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < row; j++)
+            {
+                if (arr[i][j] == true) { aliveCells++; }
+            }
+        }
+
+        
+        if (aliveCells <= 0) { gameStop = false; aliveCells = 0;}
+        if (gameStability == true) { gameStop = false; }
+
+    
+       
+
+
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (arr[i][j] == true) { cout << "* "; }
+            if (arr[i][j] == false) { cout << "- "; }
+        }
+        cout << endl;
+        
+    }
+    
+    cout << "Generation: " << generation << ". " << "Alive cells: " << aliveCells;
+
+   
+    if (generation != 1)
+    {
+
+        for (int i = 0; i < row; i++) 
+        {
+            for (int j = 0; j < col; j++) 
+            {
+                if (arr[i][j] == true && arrCopy[i][j] == true) { stabilityQ++; } 
+                else if (arr[i][j] == false && arrCopy[i][j] == false) { stabilityQ++; } 
+
+
+            }
+        }
+        if (stabilityQ == (row * col)) { gameStability = true; } 
+        stabilityQ = 0; 
+
+    }
+
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+        arr[i][j] = arrCopy[i][j];
+        }
+       
+    }
+
+
+
+    
+    tempChanges = qСhanges;
+    generation++;
+    cin.get();
+    }
+
+    if (aliveCells == 0) { cout << "All cells are dead. Game over"; }
+    if(gameStability == true) { cout << "The world has stagnated. Game over"; }
+
+}
