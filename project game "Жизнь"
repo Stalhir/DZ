@@ -67,7 +67,7 @@ int main()
         cin.get();
         system("clr");
         aliveCells = 0;
-
+        cout<<"Press the key to continue"<<endl;
 
 
 
@@ -258,4 +258,16 @@ int main()
     if (aliveCells == 0) { cout << "All cells are dead. Game over"; }
     if(gameStability == true) { cout << "The world has stagnated. Game over"; }
 
+    
+    for (int i = 0; i < row; i++)
+    {
+        delete[] arr[i];
+    }
+   
+    for (int i = 0; i < row; i++)
+    {
+        delete[] arrCopy[i];
+    }
+delete arr[];
+delete arrCopy[];
 }
